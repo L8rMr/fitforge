@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FitForge</title>
+<meta name="theme-color" content="#14161A">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="eyebrow" id="topbar-eyebrow">Today</div>
+  <h1 id="topbar-title">FitForge</h1>
+</div>
+
+<!-- TODAY -->
+<section class="screen active" id="screen-today">
+
+  <div class="card" id="today-setup-card">
+    <h3>Build today's workout</h3>
+    <p style="color:var(--chalk-dim); font-size:0.85rem; margin-top:4px;">How much time do you have?</p>
+    <div class="pill-group" id="duration-pills">
+      <button class="pill" data-min="20">20 min</button>
+      <button class="pill" data-min="30">30 min</button>
+      <button class="pill" data-min="45">45 min</button>
+      <button class="pill selected" data-min="60">60 min</button>
+      <button class="pill" data-min="75">75 min</button>
+      <button class="pill" data-min="90">90 min</button>
+    </div>
+    <div style="margin-top:14px;">
+      <button class="btn-primary" id="generate-btn">Generate Workout</button>
+    </div>
+  </div>
+
+  <div id="workout-container"></div>
+
+  <div id="finish-container" style="display:none;">
+    <button class="btn-primary" id="finish-btn">Finish &amp; Log Workout</button>
+    <button class="btn-ghost" id="regen-btn" style="display:block; margin:10px auto 0;">Start over</button>
+  </div>
+</section>
+
+<!-- RECOVERY -->
+<section class="screen" id="screen-recovery">
+  <div class="card">
+    <h3>Muscle recovery</h3>
+    <p style="color:var(--chalk-dim); font-size:0.82rem; margin-top:4px;">Based on volume &amp; intensity from your last sessions, decayed over time.</p>
+    <div class="heatmap-grid" id="heatmap" style="margin-top:12px;"></div>
+  </div>
+
+  <div class="card">
+    <h3>Coach notes</h3>
+    <p style="color:var(--chalk-dim); font-size:0.78rem; margin-top:2px;" id="last-review-line">No AI review yet.</p>
+    <div id="coach-notes" style="margin-top:10px;"></div>
+    <button class="btn-secondary" id="run-review-btn" style="margin-top:10px; width:100%;">Run AI review now</button>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="screen" id="screen-progress">
+  <div class="card">
+    <h3>History</h3>
+    <div id="history-list"></div>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section class="screen" id="screen-settings">
+  <div class="card">
+    <h3>Goal</h3>
+    <div class="pill-group" id="goal-pills" style="margin-top:8px;">
+      <button class="pill" data-goal="strength">Strength</button>
+      <button class="pill selected" data-goal="hypertrophy">Hypertrophy</button>
+      <button class="pill" data-goal="endurance">Endurance</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Equipment on hand</h3>
+    <p style="color:var(--chalk-dim); font-size:0.8rem; margin-top:4px;">Workouts are only built from what you check here.</p>
+    <div class="equip-grid" id="equip-grid" style="margin-top:10px;"></div>
+  </div>
+
+  <div class="card">
+    <h3>Weekly AI review</h3>
+    <p style="color:var(--chalk-dim); font-size:0.8rem; margin-top:4px;">Requires an ANTHROPIC_API_KEY set in the server's .env file. Reviews your last 2 weeks and tunes volume automatically once a week.</p>
+    <label style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.85rem;">
+      <input type="checkbox" id="weekly-review-toggle" style="width:18px;height:18px;accent-color:var(--iron-red);">
+      Enable weekly AI review
+    </label>
+  </div>
+</section>
+
+<nav class="bottom-nav">
+  <button class="nav-item active" data-screen="today"><span class="dot"></span>Today</button>
+  <button class="nav-item" data-screen="recovery"><span class="dot"></span>Recovery</button>
+  <button class="nav-item" data-screen="progress"><span class="dot"></span>Progress</button>
+  <button class="nav-item" data-screen="settings"><span class="dot"></span>Settings</button>
+</nav>
+
+<script src="/app.js"></script>
+</body>
+</html>
