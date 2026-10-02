@@ -5,6 +5,27 @@ weight/reps/sets over time based on your logged RPE, filters exercises to
 equipment you actually have, and builds a full routine that fits the time
 you tell it you have. Installable as a PWA on your phone.
 
+![FitForge workout view and recovery map](docs/screenshot.png)
+
+## Two versions in this repo
+
+| Folder | What it is |
+| --- | --- |
+| `/` (root) | The self-hosted server: Node.js and Express with a vanilla JS PWA front end and a flat-file store. Single workouts, recovery tracking, progression, optional weekly AI review. |
+| `web/` | A later single-file React build of the same engine that runs entirely in the browser. Adds a weekly routine generator, heavy/moderate/light tiers, rest timers and a workout stopwatch, a tappable front/back recovery body map, and animated movement previews for all 153 exercises. The screenshot shows this version. |
+
+To run the browser version:
+
+```
+cd web
+npm install
+npm run dev
+```
+
+It saves to the browser's local storage. Its "Run AI review" button calls the
+Anthropic API directly without a key, which only worked in the sandbox where it
+was first built; use the server version for a working AI review.
+
 ## How the "AI" works (hybrid)
 
 - **Daily logic (no API calls, fully offline):** a rules-based engine
@@ -61,6 +82,7 @@ lib/claudeReview.js      Weekly Claude API call for plan tuning
 routes/api.js            REST API
 db/exercises.json        153-exercise library
 public/                  Frontend (vanilla JS PWA, no build step)
+web/                     Browser-only React version (Vite)
 data/store.json          Created on first run — your equipment, settings, logs
 ```
 
