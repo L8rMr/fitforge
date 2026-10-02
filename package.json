@@ -1,0 +1,16 @@
+{
+  "name": "fitforge",
+  "version": "1.0.0",
+  "description": "Self-hosted AI-assisted workout planner with muscle recovery tracking and progressive overload.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
